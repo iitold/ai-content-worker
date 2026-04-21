@@ -1,0 +1,23 @@
+{
+  "routing": {
+    "short":   { "providers": ["gemini", "openai"], "timeoutMs": 8000,  "maxRetries": 2 },
+    "outline": { "providers": ["gemini", "openai"], "timeoutMs": 10000, "maxRetries": 2 },
+    "long":    { "providers": ["gemini", "openai"], "timeoutMs": 15000, "maxRetries": 2 }
+  },
+  "providers": {
+    "gemini": {
+      "models": {
+        "short":   ["gemini-2.0-flash", "gemini-1.5-flash"],
+        "outline": ["gemini-2.0-flash", "gemini-1.5-flash"],
+        "long":    ["gemini-2.0-flash", "gemini-1.5-pro"]
+      }
+    },
+    "openai": {
+      "models": {
+        "short":   ["gpt-4o-mini"],
+        "outline": ["gpt-4o-mini"],
+        "long":    ["gpt-4o-mini", "gpt-4o"]
+      }
+    }
+  }
+}

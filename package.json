@@ -1,0 +1,27 @@
+{
+  "name": "ai-content-worker",
+  "version": "1.0.0",
+  "description": "Local AI content pipeline worker — Mac & Windows compatible",
+  "main": "src/worker.ts",
+  "scripts": {
+    "start": "ts-node src/worker.ts",
+    "postinstall": "playwright install chromium --with-deps"
+  },
+  "type": "commonjs",
+  "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
+    "@supabase/supabase-js": "^2.104.0",
+    "axios": "^1.15.1",
+    "dotenv": "^17.4.2",
+    "fluent-ffmpeg": "^2.1.3",
+    "playwright": "^1.59.1",
+    "pino": "^10.3.1",
+    "pino-pretty": "^13.1.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/fluent-ffmpeg": "^2.1.28",
+    "@types/node": "^20"
+  }
+}
