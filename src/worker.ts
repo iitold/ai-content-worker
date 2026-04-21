@@ -108,6 +108,15 @@ async function main() {
     process.exit(1);
   }
 
+  // Authenticate to bypass RLS
+  await import("./lib/supabase").then((m) => m.authenticateWorker());
+  console.log("✅ Worker authenticated successfully");
+
+  // Send initial heartbeat, then loop every 10s
+  const { sendHeartbeat } = await import("./lib/supabase");
+  await sendHeartbeat();
+  setInterval(() => sendHeartbeat().catch(() => {}), 10000);
+
   console.log("✅ Config OK — polling for jobs...\n");
 
   // Run immediately on start, then on interval

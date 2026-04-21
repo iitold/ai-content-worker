@@ -12,10 +12,29 @@ export function getSupabase(): SupabaseClient {
     const url = process.env.SUPABASE_URL;
     const key = process.env.SUPABASE_KEY;
     if (!url || !key) throw new Error("SUPABASE_URL and SUPABASE_KEY must be set in .env");
-    _client = createClient(url, key);
+    _client = createClient(url, key, { auth: { persistSession: false } });
   }
   return _client;
 }
+
+export async function authenticateWorker() {
+  const supabase = getSupabase();
+  const { error } = await supabase.auth.signInWithPassword({
+    email: process.env.WORKER_EMAIL || "admin@viviral.com",
+    password: process.env.WORKER_PASSWORD || "admin_password",
+  });
+  if (error) {
+    throw new Error(`Worker Auth Failed: ${error.message}. Please check credentials or RLS policies.`);
+  }
+}
+
+export async function sendHeartbeat() {
+  const supabase = getSupabase();
+  await supabase
+    .from("settings")
+    .upsert({ key: "worker_status", value: { last_seen: new Date().toISOString() } });
+}
+
 
 // ─── Job Queue ───────────────────────────────────────────────────────────────
 
