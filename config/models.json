@@ -1,15 +1,15 @@
 {
   "routing": {
-    "short":   { "providers": ["gemini", "openai"], "timeoutMs": 8000,  "maxRetries": 2 },
-    "outline": { "providers": ["gemini", "openai"], "timeoutMs": 10000, "maxRetries": 2 },
-    "long":    { "providers": ["gemini", "openai"], "timeoutMs": 15000, "maxRetries": 2 }
+    "short":   { "providers": ["gemini", "openai"], "timeoutMs": 15000, "maxRetries": 4 },
+    "outline": { "providers": ["gemini", "openai"], "timeoutMs": 20000, "maxRetries": 4 },
+    "long":    { "providers": ["gemini", "openai"], "timeoutMs": 30000, "maxRetries": 4 }
   },
   "providers": {
     "gemini": {
       "models": {
-        "short":   ["gemini-2.0-flash", "gemini-1.5-flash"],
-        "outline": ["gemini-2.0-flash", "gemini-1.5-flash"],
-        "long":    ["gemini-2.0-flash", "gemini-1.5-pro"]
+        "short":   ["gemini-2.5-flash", "gemini-2.0-flash"],
+        "outline": ["gemini-2.5-flash", "gemini-2.0-flash"],
+        "long":    ["gemini-3.1-pro-preview", "gemini-2.5-pro"]
       }
     },
     "openai": {

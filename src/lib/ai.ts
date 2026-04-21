@@ -61,7 +61,7 @@ export async function generateText(taskType: TaskType, input: string): Promise<A
             ? `${err.response?.status ?? "timeout"}`
             : (err as Error).message;
           logger.warn({ event: "ai_failed", provider: providerName, model, attempt, error });
-          if (attempt < routing.maxRetries) await sleep(500 * 2 ** attempt);
+          if (attempt < routing.maxRetries) await sleep(2000 * 2 ** attempt);
         }
       }
     }
